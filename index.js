@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
 const userRoutes = require('./routes/users.routes')
 const taskRoutes = require('./routes/tasks.routes')
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000
 require('dotenv').config()
 
 app.use(express.json())
@@ -24,10 +26,10 @@ app.use((err, req, res, next) => {
 
 async function initServer(){
     
-    mongoose.connect(`mongodb+srv://dbUser:${process.env.DB_PASS}@cluster0.9uncs.mongodb.net/Kanban?retryWrites=true&w=majority`, {
+    mongoose.connect(process.env.DB_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true}).then(r=>{
-        app.listen(3000, ()=>{
+        app.listen(port, host, ()=>{
             console.log('Servidor iniciado')
         })
     }).catch(err => {
