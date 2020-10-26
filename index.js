@@ -5,11 +5,13 @@ const cookieParser = require('cookie-parser')
 const userRoutes = require('./routes/users.routes')
 const taskRoutes = require('./routes/tasks.routes')
 const host = process.env.HOST || '0.0.0.0';
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
+var cors = require('cors')
 require('dotenv').config()
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors())
 
 app.use("", userRoutes)
 app.use("/tasks", taskRoutes)

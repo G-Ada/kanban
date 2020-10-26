@@ -10,8 +10,10 @@ const modeloUsuario = mongoose.model('Usuarios', {
 
 module.exports = {
     registerUser: async (payload) => {
+        console.log(payload)
         let hashPass = await hasha(payload.clave);
         payload.clave = hashPass;
+        console.log(payload.clave)
         const usuario = new modeloUsuario(payload)
         let newUser = usuario.save()
         return newUser

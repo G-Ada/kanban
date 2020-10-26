@@ -6,6 +6,7 @@ const routes = require('express').Router();
 
 routes.post('/registrar', async (req, res) => {
     const user = req.body;
+    console.log(user)
     let userName = await UserRepo.findUserByUserName(user.userName)
     try {
         if (userName) {
@@ -15,6 +16,7 @@ routes.post('/registrar', async (req, res) => {
             res.status(200).json(newUser)
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: error.message })
     }
 })
