@@ -11,6 +11,7 @@ routes.post('/registrar', async (req, res) => {
         if (userName) {
             res.status(400).send('El usuario ya existe')
         } else {
+            let newUser = await UserRepo.registerUser(user)
             res.status(200).json(newUser)
         }
     } catch (error) {
