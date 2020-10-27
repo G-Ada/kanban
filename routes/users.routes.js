@@ -10,7 +10,7 @@ routes.post('/registrar', async (req, res) => {
     let userName = await UserRepo.findUserByUserName(user.userName)
     try {
         if (userName) {
-            res.status(400).json({error: "El nomre de usuario ya existe"})
+            res.status(400).json({error: "El nombre de usuario ya existe"})
         } else {
             let newUser = await UserRepo.registerUser(user)
             res.status(200).json(newUser)
@@ -44,7 +44,7 @@ routes.post('/login', async (req, res) => {
             })
             res.status(200).send('Ha ingresado con éxito')
         } else {
-            res.status(401).send('El ususario no es válido')
+            res.status(401).json({error: 'El ususario no es válido'})
         }
     } catch (error) {
         res.status(500).json({ error: error.message })
