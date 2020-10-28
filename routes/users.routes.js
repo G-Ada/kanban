@@ -44,7 +44,7 @@ routes.post('/login', async (req, res) => {
             })
             res.status(200).json({message: 'Ha ingresado con éxito'})
         } else {
-            res.status(401).json({error: 'El ususario no es válido'})
+            res.status(401).json({error: 'El ususario no es válido o la contraseña es incorrecta'})
         }
     } catch (error) {
         res.status(500).json({ error: error.message })
