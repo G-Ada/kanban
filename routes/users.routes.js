@@ -40,7 +40,8 @@ routes.post('/login', async (req, res) => {
             let id = user.id
             let token = usersService.generateToken(id)
             res.cookie('galletita', token, {
-                httpOnly: true
+                httpOnly: true,
+                sameSite: 'None'
             })
             res.status(200).json({message: 'Ha ingresado con éxito'})
         } else {
