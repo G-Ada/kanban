@@ -42,7 +42,7 @@ routes.post('/login', async (req, res) => {
             res.cookie('galletita', token, {
                 httpOnly: true
             })
-            res.status(200).send('Ha ingresado con éxito')
+            res.status(200).json({message: 'Ha ingresado con éxito'})
         } else {
             res.status(401).json({error: 'El ususario no es válido'})
         }
